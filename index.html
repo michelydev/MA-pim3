@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduQuest — Plataforma de Avaliações</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== SVG ICON DEFS ===================== -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- home -->
+    <symbol id="ic-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/>
+    </symbol>
+    <!-- store / shopping bag -->
+    <symbol id="ic-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+    </symbol>
+    <!-- settings / gear -->
+    <symbol id="ic-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+    </symbol>
+    <!-- diamond / gem -->
+    <symbol id="ic-diamond" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20"/><path d="M12 22L6 9l6-6 6 6z"/>
+    </symbol>
+    <!-- trophy -->
+    <symbol id="ic-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9H4a2 2 0 01-2-2V5h4"/><path d="M18 9h2a2 2 0 002-2V5h-4"/><path d="M6 9v6a6 6 0 0012 0V9"/><path d="M12 21v-2"/><path d="M9 21h6"/>
+    </symbol>
+    <!-- user -->
+    <symbol id="ic-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+    </symbol>
+    <!-- bell / notifications -->
+    <symbol id="ic-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+    </symbol>
+    <!-- book / activities -->
+    <symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+    </symbol>
+    <!-- history / clock -->
+    <symbol id="ic-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+      <polyline points="12 6 12 12 16 14"/>
+    </symbol>
+    <!-- target / missions -->
+    <symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+    </symbol>
+    <!-- lock -->
+    <symbol id="ic-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+    </symbol>
+    <!-- chevron right -->
+    <symbol id="ic-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </symbol>
+    <!-- chevron left -->
+    <symbol id="ic-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </symbol>
+    <!-- eye -->
+    <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+    </symbol>
+    <!-- eye-off -->
+    <symbol id="ic-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>
+    </symbol>
+    <!-- logout -->
+    <symbol id="ic-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+    </symbol>
+    <!-- more vertical -->
+    <symbol id="ic-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="5" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="19" r="1" fill="currentColor"/>
+    </symbol>
+    <!-- check -->
+    <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </symbol>
+    <!-- x / close -->
+    <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </symbol>
+    <!-- save / bookmark -->
+    <symbol id="ic-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+    </symbol>
+    <!-- star -->
+    <symbol id="ic-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </symbol>
+    <!-- scissors / discard -->
+    <symbol id="ic-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/>
+    </symbol>
+    <!-- skip forward -->
+    <symbol id="ic-skip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/>
+    </symbol>
+    <!-- clock -->
+    <symbol id="ic-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    </symbol>
+    <!-- lightning / power -->
+    <symbol id="ic-lightning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </symbol>
+    <!-- chart / stats -->
+    <symbol id="ic-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+    </symbol>
+    <!-- shield / accessibility -->
+    <symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </symbol>
+    <!-- info -->
+    <symbol id="ic-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+    </symbol>
+    <!-- help circle -->
+    <symbol id="ic-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+    </symbol>
+    <!-- award / badge -->
+    <symbol id="ic-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+    </symbol>
+    <!-- repeat / restart -->
+    <symbol id="ic-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/>
+    </symbol>
+    <!-- tag / price -->
+    <symbol id="ic-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+    </symbol>
+    <!-- fire / streak -->
+    <symbol id="ic-fire" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-7 7 7 7 0 01-4.14-12.5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ===================== LOGIN ===================== -->
+<div id="screen-login" class="screen active">
+  <div class="login-role-wrap">
+    <div class="login-role-label">Entrar como:</div>
+    <button class="role-btn">
+      <svg class="icon" width="20" height="20"><use href="#ic-user"/></svg>
+      Estudante
+    </button>
+  </div>
+
+  <div class="login-card">
+    <div class="login-logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="10" fill="#7c6af5"/>
+        <path d="M10 26L18 10l8 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 20h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="login-logo-text">EduQuest</span>
+    </div>
+
+    <div class="field-group">
+      <label>Email</label>
+      <input type="email" id="login-email" placeholder="seu@email.com">
+    </div>
+    <div class="field-group">
+      <label>Senha</label>
+      <div class="password-wrap">
+        <input type="password" id="login-pw" placeholder="••••••••">
+        <button class="toggle-pw" onclick="togglePw()" id="pw-toggle-btn">
+          <svg width="20" height="20"><use href="#ic-eye" id="pw-icon"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="login-actions">
+      <button class="btn-entrar" onclick="showScreen('home')">Entrar</button>
+      <button class="btn-cadastrar">Criar conta</button>
+    </div>
+  </div>
+
+  <button class="btn-entrar-sem" onclick="showScreen('home')">Entrar sem logar</button>
+</div>
+
+<!-- ===================== DROPDOWN MENU ===================== -->
+<div class="dropdown-overlay" id="dropdown-overlay" onclick="closeDropdown()">
+  <div class="dropdown-menu" onclick="event.stopPropagation()">
+    <button class="dropdown-item" onclick="closeDropdown(); showScreen('profile')">
+      <svg width="18" height="18"><use href="#ic-user"/></svg> Meu Perfil
+    </button>
+    <button class="dropdown-item" onclick="closeDropdown(); showScreen('settings')">
+      <svg width="18" height="18"><use href="#ic-settings"/></svg> Configurações
+    </button>
+    <button class="dropdown-item" onclick="closeDropdown(); showScreen('notifications')">
+      <svg width="18" height="18"><use href="#ic-bell"/></svg> Notificações
+    </button>
+    <button class="dropdown-item danger" onclick="closeDropdown(); showScreen('login')">
+      <svg width="18" height="18"><use href="#ic-logout"/></svg> Sair
+    </button>
+  </div>
+</div>
+
+<!-- MODAL: trilha não concluída -->
+<div class="modal-overlay" id="modal-trail">
+  <div class="modal-box">
+    <div style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:#fff0f0;margin:0 auto 16px;">
+      <svg width="32" height="32" color="#e84040"><use href="#ic-lock"/></svg>
+    </div>
+    <h2>Trilha bloqueada!</h2>
+    <p>Você precisa concluir a trilha anterior antes de desbloquear este nível.</p>
+    <button class="btn-ok" onclick="closeModal('modal-trail')">Entendido</button>
+  </div>
+</div>
+
+<!-- ===================== NAVBAR TEMPLATE ===================== -->
+<!-- Home Navbar -->
+<template id="tpl-navbar-home">
+  <nav class="navbar">
+    <div class="nav-logo-mark">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#7c6af5"/><path d="M10 26L18 10l8 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="nav-logo-text">EduQuest</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="showScreen('home')">
+        <svg width="16" height="16"><use href="#ic-home"/></svg> Home
+      </button>
+      <button class="nav-link" onclick="showScreen('store')">
+        <svg width="16" height="16"><use href="#ic-store"/></svg> Loja
+      </button>
+      <button class="nav-link" onclick="showScreen('settings')">
+        <svg width="16" height="16"><use href="#ic-settings"/></svg> Configurações
+      </button>
+      <button class="nav-link" onclick="showScreen('missions')">
+        <svg width="16" height="16"><use href="#ic-target"/></svg> Missões
+      </button>
+    </div>
+    <div class="nav-right">
+      <span class="nav-stat" style="color:var(--trophy)">
+        <svg width="14" height="14" color="var(--trophy)"><use href="#ic-trophy"/></svg> 3
+      </span>
+      <span class="nav-stat" style="color:var(--diamond)">
+        <svg width="14" height="14" color="var(--diamond)"><use href="#ic-diamond"/></svg> 4
+      </span>
+      <div class="nav-avatar" onclick="toggleDropdown()">JS</div>
+      <button class="nav-menu-btn" onclick="toggleDropdown()">
+        <svg width="22" height="22"><use href="#ic-more"/></svg>
+      </button>
+    </div>
+  </nav>
+</template>
+
+<!-- ===================== HOME ===================== -->
+<div id="screen-home" class="screen">
+  <nav class="navbar">
+    <div class="nav-logo-mark" style="cursor:pointer" onclick="showScreen('home')">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#7c6af5"/><path d="M10 26L18 10l8 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="nav-logo-text">EduQuest</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="showScreen('home')">
+        <svg width="16" height="16"><use href="#ic-home"/></svg> Home
+      </button>
+      <button class="nav-link" onclick="showScreen('store')">
+        <svg width="16" height="16"><use href="#ic-store"/></svg> Loja
+      </button>
+      <button class="nav-link" onclick="showScreen('settings')">
+        <svg width="16" height="16"><use href="#ic-settings"/></svg> Configurações
+      </button>
+      <button class="nav-link" onclick="showScreen('missions')">
+        <svg width="16" height="16"><use href="#ic-target"/></svg> Missões
+      </button>
+    </div>
+    <div class="nav-right">
+      <span class="nav-stat" style="color:#b8860b">
+        <svg width="14" height="14" color="#f5a623"><use href="#ic-trophy"/></svg> 3
+      </span>
+      <span class="nav-stat" style="color:var(--purple-dark)">
+        <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 4
+      </span>
+      <div class="nav-avatar" onclick="toggleDropdown()">JS</div>
+      <button class="nav-menu-btn" onclick="toggleDropdown()">
+        <svg width="22" height="22"><use href="#ic-more"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="home-content">
+    <div class="levels-row">
+      <!-- FÁCIL -->
+      <div class="level-card" onclick="startLevel('easy')">
+        <div class="level-card-top green">
+          <h3>Nível Fácil</h3>
+          <div class="sub">1/5 Concluídas</div>
+          <div class="level-trail">
+            <div class="trail-node active">1</div>
+            <div class="trail-line"></div>
+            <div class="trail-node locked"><svg width="12" height="12"><use href="#ic-lock"/></svg></div>
+            <div class="trail-line"></div>
+            <div class="trail-node locked"><svg width="12" height="12"><use href="#ic-lock"/></svg></div>
+            <div class="trail-line"></div>
+            <div class="trail-node locked"><svg width="12" height="12"><use href="#ic-lock"/></svg></div>
+            <div class="trail-line"></div>
+            <div class="trail-node locked"><svg width="12" height="12"><use href="#ic-lock"/></svg></div>
+          </div>
+        </div>
+        <div class="level-card-bot">
+          <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg>
+          <span>+5 Diamantes</span>
+          <span style="color:#ddd">|</span>
+          <svg width="14" height="14" color="#f5a623"><use href="#ic-trophy"/></svg>
+          <span>+1 Troféu</span>
+        </div>
+      </div>
+
+      <!-- MÉDIO -->
+      <div class="level-card level-locked" onclick="openModal('modal-trail')">
+        <div class="level-card-top yellow" style="min-height:160px;justify-content:center;">
+          <h3>Nível Médio</h3>
+          <svg width="42" height="42" color="rgba(255,255,255,0.8)" style="margin-top:12px"><use href="#ic-lock"/></svg>
+        </div>
+        <div class="level-card-bot">
+          <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg>
+          <span>+10 Diamantes</span>
+        </div>
+      </div>
+
+      <!-- DIFÍCIL -->
+      <div class="level-card level-locked" onclick="openModal('modal-trail')">
+        <div class="level-card-top red" style="min-height:160px;justify-content:center;">
+          <h3>Nível Difícil</h3>
+          <svg width="42" height="42" color="rgba(255,255,255,0.8)" style="margin-top:12px"><use href="#ic-lock"/></svg>
+        </div>
+        <div class="level-card-bot">
+          <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg>
+          <span>+10 Diamantes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="quick-actions">
+      <button class="qa-btn" onclick="startLevel('easy')">
+        <svg width="26" height="26" color="white"><use href="#ic-book"/></svg>
+        <span class="qa-label">Atividades</span>
+      </button>
+      <button class="qa-btn" onclick="showScreen('history')">
+        <svg width="26" height="26" color="white"><use href="#ic-history"/></svg>
+        <span class="qa-label">Histórico</span>
+      </button>
+      <button class="qa-btn" onclick="showScreen('notifications')">
+        <svg width="26" height="26" color="white"><use href="#ic-bell"/></svg>
+        <span class="qa-label">Notificações</span>
+      </button>
+      <button class="qa-btn" onclick="showScreen('missions')">
+        <svg width="26" height="26" color="white"><use href="#ic-target"/></svg>
+        <span class="qa-label">Missões</span>
+      </button>
+    </div>
+
+    <!-- Missions preview -->
+    <div class="missions-card">
+      <div class="missions-header">
+        <div class="missions-title">
+          <svg width="18" height="18" color="var(--purple-dark)"><use href="#ic-target"/></svg>
+          Missões do Dia
+        </div>
+        <div class="missions-count">0/2 concluídas</div>
+      </div>
+      <div class="mission-divider"></div>
+      <div class="mission-item">
+        <svg width="18" height="18" color="#ddd"><use href="#ic-check"/></svg>
+        Complete 2 atividades
+        <span class="mission-reward">
+          <svg width="13" height="13" color="var(--purple-dark)"><use href="#ic-diamond"/></svg>
+          +2 Diamantes
+        </span>
+      </div>
+      <div class="mission-item">
+        <svg width="18" height="18" color="#ddd"><use href="#ic-check"/></svg>
+        Acerte 5 questões seguidas
+        <span class="mission-reward">
+          <svg width="13" height="13" color="var(--purple-dark)"><use href="#ic-diamond"/></svg>
+          +1 Diamante
+        </span>
+      </div>
+      <div>
+        <button class="btn-ver-missoes" onclick="showScreen('missions')">
+          <svg width="14" height="14" color="inherit"><use href="#ic-target"/></svg>
+          Ver todas as missões
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SETTINGS ===================== -->
+<div id="screen-settings" class="screen">
+  <nav class="navbar">
+    <div class="nav-logo-mark" style="cursor:pointer" onclick="showScreen('home')">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#7c6af5"/><path d="M10 26L18 10l8 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="nav-logo-text">EduQuest</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="showScreen('home')">
+        <svg width="16" height="16"><use href="#ic-home"/></svg> Home
+      </button>
+      <button class="nav-link" onclick="showScreen('store')">
+        <svg width="16" height="16"><use href="#ic-store"/></svg> Loja
+      </button>
+      <button class="nav-link active">
+        <svg width="16" height="16"><use href="#ic-settings"/></svg> Configurações
+      </button>
+      <button class="nav-link" onclick="showScreen('missions')">
+        <svg width="16" height="16"><use href="#ic-target"/></svg> Missões
+      </button>
+    </div>
+    <div class="nav-right">
+      <span class="nav-stat" style="color:#b8860b">
+        <svg width="14" height="14" color="#f5a623"><use href="#ic-trophy"/></svg> 3
+      </span>
+      <span class="nav-stat" style="color:var(--purple-dark)">
+        <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 4
+      </span>
+      <div class="nav-avatar" onclick="toggleDropdown()">JS</div>
+      <button class="nav-menu-btn" onclick="toggleDropdown()">
+        <svg width="22" height="22"><use href="#ic-more"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="settings-content">
+    <div class="breadcrumb">Home &gt; Configurações</div>
+    <div class="settings-title">Configurações</div>
+    <div class="settings-sub">Personalize sua experiência na plataforma</div>
+
+    <div class="settings-grid">
+      <div class="settings-card" onclick="showScreen('profile')">
+        <div class="settings-card-icon purple">
+          <svg width="24" height="24" color="var(--purple-dark)"><use href="#ic-user"/></svg>
+        </div>
+        <div class="settings-card-body">
+          <div class="settings-card-title">Perfil</div>
+          <div class="settings-card-desc">Edite suas informações pessoais, foto e preferências.</div>
+        </div>
+        <div class="settings-card-arrow"><svg width="18" height="18"><use href="#ic-chevron-right"/></svg></div>
+      </div>
+      <div class="settings-card">
+        <div class="settings-card-icon green">
+          <svg width="24" height="24" color="var(--green-dark)"><use href="#ic-book"/></svg>
+        </div>
+        <div class="settings-card-body">
+          <div class="settings-card-title">Estudo</div>
+          <div class="settings-card-desc">Configure preferências de estudo, lembretes e metas.</div>
+        </div>
+        <div class="settings-card-arrow"><svg width="18" height="18"><use href="#ic-chevron-right"/></svg></div>
+      </div>
+      <div class="settings-card">
+        <div class="settings-card-icon yellow">
+          <svg width="24" height="24" color="#d4830a"><use href="#ic-lock"/></svg>
+        </div>
+        <div class="settings-card-body">
+          <div class="settings-card-title">Conta</div>
+          <div class="settings-card-desc">Gerencie login, email, senha e autenticação.</div>
+        </div>
+        <div class="settings-card-arrow"><svg width="18" height="18"><use href="#ic-chevron-right"/></svg></div>
+      </div>
+      <div class="settings-card">
+        <div class="settings-card-icon red">
+          <svg width="24" height="24" color="var(--red)"><use href="#ic-help"/></svg>
+        </div>
+        <div class="settings-card-body">
+          <div class="settings-card-title">Ajuda</div>
+          <div class="settings-card-desc">Suporte, dúvidas frequentes e sugestões.</div>
+        </div>
+        <div class="settings-card-arrow"><svg width="18" height="18"><use href="#ic-chevron-right"/></svg></div>
+      </div>
+      <div class="settings-card">
+        <div class="settings-card-icon blue">
+          <svg width="24" height="24" color="#3b82f6"><use href="#ic-shield"/></svg>
+        </div>
+        <div class="settings-card-body">
+          <div class="settings-card-title">Acessibilidade</div>
+          <div class="settings-card-desc">Tamanho da fonte, contraste e outros recursos.</div>
+        </div>
+        <div class="settings-card-arrow"><svg width="18" height="18"><use href="#ic-chevron-right"/></svg></div>
+      </div>
+      <div class="settings-card">
+        <div class="settings-card-icon grey">
+          <svg width="24" height="24" color="#666"><use href="#ic-info"/></svg>
+        </div>
+        <div class="settings-card-body">
+          <div class="settings-card-title">Sobre</div>
+          <div class="settings-card-desc">Termos de uso, política de privacidade e versão.</div>
+        </div>
+        <div class="settings-card-arrow"><svg width="18" height="18"><use href="#ic-chevron-right"/></svg></div>
+      </div>
+    </div>
+
+    <div class="settings-toggles">
+      <div class="toggle-group">
+        <span>Tema escuro:</span>
+        <label class="toggle-switch theme">
+          <input type="checkbox" id="toggle-theme">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-group">
+        <span>Notificações:</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="toggle-notif" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== QUIZ ===================== -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-topbar">
+    <button class="btn-back-quiz" onclick="showScreen('home')">
+      <svg width="18" height="18"><use href="#ic-chevron-left"/></svg> Voltar
+    </button>
+    <div class="quiz-title-box" id="quiz-title-box">
+      Análise e Desenvolvimento<br>de Sistemas
+    </div>
+    <div class="level-badge easy" id="level-badge-display">Nível Fácil</div>
+  </div>
+
+  <div class="quiz-content">
+    <div class="quiz-card">
+      <div class="question-counter">
+        Questão <strong id="q-current">1</strong>/<span id="q-total">5</span>
+      </div>
+      <div class="q-progress-bar">
+        <div class="q-progress-fill" id="q-progress-fill" style="width:20%"></div>
+      </div>
+
+      <div class="question-text" id="q-text"></div>
+      <div class="options-list" id="q-options"></div>
+      <div class="feedback-box" id="feedback-box"></div>
+
+      <div class="help-buttons">
+        <button class="help-btn" onclick="discardTwo()">
+          <svg width="16" height="16" color="var(--purple-dark)"><use href="#ic-scissors"/></svg>
+          Descartar 2 alternativas
+          <span class="help-btn-cost"><svg width="10" height="10" color="white"><use href="#ic-diamond"/></svg> 2</span>
+        </button>
+        <button class="help-btn" onclick="skipQuestion()">
+          <svg width="16" height="16" color="var(--purple-dark)"><use href="#ic-skip"/></svg>
+          Pular questão
+          <span class="help-btn-cost"><svg width="10" height="10" color="white"><use href="#ic-diamond"/></svg> 5</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="quiz-bottombar">
+      <button class="nav-quiz-btn" onclick="prevQuestion()">
+        <svg width="16" height="16"><use href="#ic-chevron-left"/></svg> Anterior
+      </button>
+      <button class="btn-save">
+        <svg width="15" height="15"><use href="#ic-save"/></svg> Salvar
+      </button>
+      <button class="nav-quiz-btn primary" onclick="nextQuestion()">
+        Próxima <svg width="16" height="16"><use href="#ic-chevron-right"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RESULT ===================== -->
+<div id="screen-result" class="screen">
+  <div class="result-card">
+    <div class="result-icon-wrap great" id="result-icon-wrap">
+      <svg width="48" height="48" color="var(--green-dark)" id="result-icon-svg"><use href="#ic-trophy"/></svg>
+    </div>
+    <div class="result-title" id="result-title">Excelente resultado!</div>
+    <div class="result-score" id="result-score">4/5</div>
+    <div class="result-sub" id="result-sub">Você acertou 80% das questões!</div>
+
+    <div class="result-breakdown">
+      <div class="result-stat">
+        <div class="result-stat-val" id="res-correct" style="color:var(--green-dark)">4</div>
+        <div class="result-stat-lbl">Corretas</div>
+      </div>
+      <div class="result-stat">
+        <div class="result-stat-val" id="res-wrong" style="color:var(--red)">1</div>
+        <div class="result-stat-lbl">Erradas</div>
+      </div>
+      <div class="result-stat">
+        <div class="result-stat-val" id="res-diamonds" style="color:var(--purple-dark)">+3</div>
+        <div class="result-stat-lbl">Diamantes</div>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <button class="btn-result secondary" onclick="restartQuiz()">
+        <svg width="16" height="16"><use href="#ic-repeat"/></svg> Tentar de novo
+      </button>
+      <button class="btn-result primary" onclick="showScreen('home')">
+        <svg width="16" height="16"><use href="#ic-home"/></svg> Início
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== STORE ===================== -->
+<div id="screen-store" class="screen">
+  <nav class="navbar">
+    <div class="nav-logo-mark" style="cursor:pointer" onclick="showScreen('home')">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#7c6af5"/><path d="M10 26L18 10l8 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="nav-logo-text">EduQuest</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="showScreen('home')"><svg width="16" height="16"><use href="#ic-home"/></svg> Home</button>
+      <button class="nav-link active"><svg width="16" height="16"><use href="#ic-store"/></svg> Loja</button>
+      <button class="nav-link" onclick="showScreen('settings')"><svg width="16" height="16"><use href="#ic-settings"/></svg> Configurações</button>
+      <button class="nav-link" onclick="showScreen('missions')"><svg width="16" height="16"><use href="#ic-target"/></svg> Missões</button>
+    </div>
+    <div class="nav-right">
+      <span class="nav-stat" style="color:#b8860b"><svg width="14" height="14" color="#f5a623"><use href="#ic-trophy"/></svg> 3</span>
+      <span class="nav-stat" style="color:var(--purple-dark)"><svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 4</span>
+      <div class="nav-avatar" onclick="toggleDropdown()">JS</div>
+      <button class="nav-menu-btn" onclick="toggleDropdown()"><svg width="22" height="22"><use href="#ic-more"/></svg></button>
+    </div>
+  </nav>
+
+  <div class="store-content">
+    <div class="store-header">
+      <div class="breadcrumb" style="color:rgba(255,255,255,0.7)">Home &gt; Loja</div>
+      <div class="store-title">Loja</div>
+      <div class="store-sub">Use seus diamantes para comprar vantagens</div>
+    </div>
+
+    <div class="store-balance">
+      <div class="balance-item">
+        <svg width="18" height="18" color="white"><use href="#ic-diamond"/></svg>
+        4 Diamantes
+      </div>
+      <div class="balance-sep"></div>
+      <div class="balance-item">
+        <svg width="18" height="18" color="#f5a623"><use href="#ic-trophy"/></svg>
+        3 Troféus
+      </div>
+    </div>
+
+    <div class="store-section-title">
+      <svg width="18" height="18" color="white"><use href="#ic-lightning"/></svg>
+      Power-ups
+    </div>
+    <div class="powerup-grid">
+      <div class="powerup-card">
+        <div class="powerup-icon purple">
+          <svg width="26" height="26" color="var(--purple-dark)"><use href="#ic-scissors"/></svg>
+        </div>
+        <div class="powerup-body">
+          <div class="powerup-name">Descartar 2 alternativas</div>
+          <div class="powerup-desc">Remove 2 alternativas erradas da questão atual</div>
+        </div>
+        <div class="powerup-price">
+          <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 2
+        </div>
+      </div>
+      <div class="powerup-card">
+        <div class="powerup-icon yellow">
+          <svg width="26" height="26" color="#d4830a"><use href="#ic-skip"/></svg>
+        </div>
+        <div class="powerup-body">
+          <div class="powerup-name">Pular questão</div>
+          <div class="powerup-desc">Pula a questão atual sem contar como erro</div>
+        </div>
+        <div class="powerup-price">
+          <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 5
+        </div>
+      </div>
+      <div class="powerup-card">
+        <div class="powerup-icon green">
+          <svg width="26" height="26" color="var(--green-dark)"><use href="#ic-repeat"/></svg>
+        </div>
+        <div class="powerup-body">
+          <div class="powerup-name">Segunda chance</div>
+          <div class="powerup-desc">Permite responder uma questão errada novamente</div>
+        </div>
+        <div class="powerup-price">
+          <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 8
+        </div>
+      </div>
+      <div class="powerup-card">
+        <div class="powerup-icon red">
+          <svg width="26" height="26" color="var(--red)"><use href="#ic-lightning"/></svg>
+        </div>
+        <div class="powerup-body">
+          <div class="powerup-name">XP em dobro</div>
+          <div class="powerup-desc">Dobra os diamantes ganhos nesta sessão</div>
+        </div>
+        <div class="powerup-price">
+          <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 12
+        </div>
+      </div>
+    </div>
+
+    <div class="store-section-title">
+      <svg width="18" height="18" color="white"><use href="#ic-award"/></svg>
+      Personalizações
+    </div>
+    <div class="store-grid">
+      <div class="store-item-wrap">
+        <div class="store-item">
+          <div class="store-item-visual" style="background:#f0eeff;">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="26" fill="#c4b8ff"/><path d="M18 34L26 18l8 16" stroke="#7c6af5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 28h10" stroke="#7c6af5" stroke-width="3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="store-item-body">
+            <div class="store-item-name">Avatar Estrela</div>
+            <div class="store-item-desc">Avatar exclusivo roxo com coroa</div>
+            <div class="store-item-price">
+              <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 15
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="store-item-wrap">
+        <div class="store-item-badge">Novo</div>
+        <div class="store-item">
+          <div class="store-item-visual" style="background:#fff8eb;">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="26" fill="#ffe4a0"/><polygon points="26,14 29.5,22 38,23 32,29 33.5,37 26,33 18.5,37 20,29 14,23 22.5,22" fill="#f5a623"/></svg>
+          </div>
+          <div class="store-item-body">
+            <div class="store-item-name">Tema Dourado</div>
+            <div class="store-item-desc">Interface com cores em dourado</div>
+            <div class="store-item-price">
+              <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 20
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="store-item-wrap">
+        <div class="store-item owned">
+          <div class="store-item-visual" style="background:#edfce8;">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="26" fill="#b8f0a0"/><path d="M14 26l8 8 16-16" stroke="var(--green-dark)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="store-item-body">
+            <div class="store-item-name">Moldura Verde</div>
+            <div class="store-item-desc">Moldura do perfil em verde</div>
+            <div class="store-item-price" style="color:var(--green-dark)">
+              <svg width="14" height="14" color="var(--green-dark)"><use href="#ic-check"/></svg> Adquirido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="store-item-wrap">
+        <div class="store-item">
+          <div class="store-item-visual" style="background:#fff0f0;">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="26" fill="#ffb8b8"/><path d="M26 16c-3-5-10-5-10 2 0 6 10 12 10 12s10-6 10-12c0-7-7-7-10-2z" fill="#e84040"/></svg>
+          </div>
+          <div class="store-item-body">
+            <div class="store-item-name">Avatar Coração</div>
+            <div class="store-item-desc">Avatar temático com coração</div>
+            <div class="store-item-price">
+              <svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 10
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MISSIONS ===================== -->
+<div id="screen-missions" class="screen">
+  <nav class="navbar">
+    <div class="nav-logo-mark" style="cursor:pointer" onclick="showScreen('home')">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#7c6af5"/><path d="M10 26L18 10l8 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="nav-logo-text">EduQuest</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="showScreen('home')"><svg width="16" height="16"><use href="#ic-home"/></svg> Home</button>
+      <button class="nav-link" onclick="showScreen('store')"><svg width="16" height="16"><use href="#ic-store"/></svg> Loja</button>
+      <button class="nav-link" onclick="showScreen('settings')"><svg width="16" height="16"><use href="#ic-settings"/></svg> Configurações</button>
+      <button class="nav-link active"><svg width="16" height="16"><use href="#ic-target"/></svg> Missões</button>
+    </div>
+    <div class="nav-right">
+      <span class="nav-stat" style="color:#b8860b"><svg width="14" height="14" color="#f5a623"><use href="#ic-trophy"/></svg> 3</span>
+      <span class="nav-stat" style="color:var(--purple-dark)"><svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 4</span>
+      <div class="nav-avatar" onclick="toggleDropdown()">JS</div>
+      <button class="nav-menu-btn" onclick="toggleDropdown()"><svg width="22" height="22"><use href="#ic-more"/></svg></button>
+    </div>
+  </nav>
+
+  <div class="missions-content">
+    <div class="missions-page-header">
+      <div class="breadcrumb" style="color:rgba(255,255,255,0.7)">Home &gt; Missões</div>
+      <div class="missions-page-title">Missões</div>
+      <div class="missions-page-sub">Complete missões para ganhar diamantes e troféus</div>
+    </div>
+
+    <div class="missions-daily-reset">
+      <svg width="14" height="14" color="white"><use href="#ic-clock"/></svg>
+      Reinicia em: 06h 42min
+    </div>
+
+    <div class="profile-section-title" style="margin-bottom:12px">
+      <svg width="16" height="16" color="white"><use href="#ic-fire"/></svg>
+      Missões Diárias
+    </div>
+    <div class="missions-list">
+      <div class="mission-card">
+        <div class="mission-icon purple">
+          <svg width="22" height="22" color="var(--purple-dark)"><use href="#ic-book"/></svg>
+        </div>
+        <div class="mission-body">
+          <div class="mission-title">Estudante dedicado</div>
+          <div class="mission-desc">Complete 2 atividades hoje</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+            <div class="mission-progress-bar" style="flex:1"><div class="mission-progress-fill purple" style="width:0%"></div></div>
+            <span style="font-size:12px;font-weight:700;color:#aaa">0/2</span>
+          </div>
+        </div>
+        <div class="mission-reward-wrap">
+          <div class="mission-reward-badge">
+            <svg width="12" height="12" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> +2
+          </div>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon green">
+          <svg width="22" height="22" color="var(--green-dark)"><use href="#ic-check"/></svg>
+        </div>
+        <div class="mission-body">
+          <div class="mission-title">Sequência perfeita</div>
+          <div class="mission-desc">Acerte 5 questões consecutivas sem errar</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+            <div class="mission-progress-bar" style="flex:1"><div class="mission-progress-fill green" style="width:40%"></div></div>
+            <span style="font-size:12px;font-weight:700;color:#aaa">2/5</span>
+          </div>
+        </div>
+        <div class="mission-reward-wrap">
+          <div class="mission-reward-badge">
+            <svg width="12" height="12" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> +1
+          </div>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon yellow">
+          <svg width="22" height="22" color="#d4830a"><use href="#ic-clock"/></svg>
+        </div>
+        <div class="mission-body">
+          <div class="mission-title">Maratonista</div>
+          <div class="mission-desc">Estude por 20 minutos seguidos</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+            <div class="mission-progress-bar" style="flex:1"><div class="mission-progress-fill yellow" style="width:0%"></div></div>
+            <span style="font-size:12px;font-weight:700;color:#aaa">0/20 min</span>
+          </div>
+        </div>
+        <div class="mission-reward-wrap">
+          <div class="mission-reward-badge">
+            <svg width="12" height="12" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> +3
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-section-title" style="margin-top:28px;margin-bottom:12px">
+      <svg width="16" height="16" color="white"><use href="#ic-star"/></svg>
+      Missões Semanais
+    </div>
+    <div class="missions-list">
+      <div class="mission-card done">
+        <div class="mission-icon green">
+          <svg width="22" height="22" color="var(--green-dark)"><use href="#ic-check"/></svg>
+        </div>
+        <div class="mission-body">
+          <div class="mission-title">Primeira vitória</div>
+          <div class="mission-desc">Complete sua primeira atividade da semana</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+            <div class="mission-progress-bar" style="flex:1"><div class="mission-progress-fill green" style="width:100%"></div></div>
+            <span style="font-size:12px;font-weight:700;color:var(--green-dark)">Concluída!</span>
+          </div>
+        </div>
+        <div class="mission-reward-wrap">
+          <svg width="20" height="20" color="var(--green-dark)" class="mission-check-icon"><use href="#ic-check"/></svg>
+        </div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon purple">
+          <svg width="22" height="22" color="var(--purple-dark)"><use href="#ic-target"/></svg>
+        </div>
+        <div class="mission-body">
+          <div class="mission-title">Nível acima</div>
+          <div class="mission-desc">Complete 10 atividades esta semana</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+            <div class="mission-progress-bar" style="flex:1"><div class="mission-progress-fill purple" style="width:10%"></div></div>
+            <span style="font-size:12px;font-weight:700;color:#aaa">1/10</span>
+          </div>
+        </div>
+        <div class="mission-reward-wrap">
+          <div class="mission-reward-badge" style="background:#fff8eb;color:#d4830a">
+            <svg width="12" height="12" color="#f5a623"><use href="#ic-trophy"/></svg> +1
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== NOTIFICATIONS ===================== -->
+<div id="screen-notifications" class="screen">
+  <nav class="navbar">
+    <div class="nav-logo-mark" style="cursor:pointer" onclick="showScreen('home')">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#7c6af5"/><path d="M10 26L18 10l8 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="nav-logo-text">EduQuest</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="showScreen('home')"><svg width="16" height="16"><use href="#ic-home"/></svg> Home</button>
+      <button class="nav-link" onclick="showScreen('store')"><svg width="16" height="16"><use href="#ic-store"/></svg> Loja</button>
+      <button class="nav-link" onclick="showScreen('settings')"><svg width="16" height="16"><use href="#ic-settings"/></svg> Configurações</button>
+      <button class="nav-link" onclick="showScreen('missions')"><svg width="16" height="16"><use href="#ic-target"/></svg> Missões</button>
+    </div>
+    <div class="nav-right">
+      <span class="nav-stat" style="color:#b8860b"><svg width="14" height="14" color="#f5a623"><use href="#ic-trophy"/></svg> 3</span>
+      <span class="nav-stat" style="color:var(--purple-dark)"><svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 4</span>
+      <div class="nav-avatar" onclick="toggleDropdown()">JS</div>
+      <button class="nav-menu-btn" onclick="toggleDropdown()"><svg width="22" height="22"><use href="#ic-more"/></svg></button>
+    </div>
+  </nav>
+
+  <div class="notif-content">
+    <div class="notif-header">
+      <div>
+        <div class="breadcrumb" style="color:rgba(255,255,255,0.7)">Home &gt; Notificações</div>
+        <div class="notif-title">Notificações</div>
+      </div>
+      <button class="btn-mark-all">Marcar todas como lidas</button>
+    </div>
+
+    <div class="notif-list">
+      <div class="notif-item unread">
+        <div class="notif-icon-wrap purple">
+          <svg width="20" height="20" color="var(--purple-dark)"><use href="#ic-trophy"/></svg>
+        </div>
+        <div class="notif-body">
+          <div class="notif-text"><strong>Nova conquista desbloqueada!</strong> Você completou sua primeira atividade.</div>
+          <div class="notif-time">Agora mesmo</div>
+        </div>
+        <div class="notif-unread-dot"></div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-icon-wrap yellow">
+          <svg width="20" height="20" color="#d4830a"><use href="#ic-fire"/></svg>
+        </div>
+        <div class="notif-body">
+          <div class="notif-text"><strong>Sequência em risco!</strong> Você tem até meia-noite para manter sua sequência de 3 dias.</div>
+          <div class="notif-time">há 1 hora</div>
+        </div>
+        <div class="notif-unread-dot"></div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-icon-wrap green">
+          <svg width="20" height="20" color="var(--green-dark)"><use href="#ic-target"/></svg>
+        </div>
+        <div class="notif-body">
+          <div class="notif-text"><strong>Missão concluída!</strong> Você completou "Primeira Vitória" e ganhou +1 Troféu.</div>
+          <div class="notif-time">há 2 horas</div>
+        </div>
+        <div class="notif-unread-dot"></div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-icon-wrap purple">
+          <svg width="20" height="20" color="var(--purple-dark)"><use href="#ic-diamond"/></svg>
+        </div>
+        <div class="notif-body">
+          <div class="notif-text"><strong>Diamantes recebidos!</strong> Você ganhou +5 diamantes por completar o Nível Fácil.</div>
+          <div class="notif-time">Ontem</div>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-icon-wrap green">
+          <svg width="20" height="20" color="var(--green-dark)"><use href="#ic-book"/></svg>
+        </div>
+        <div class="notif-body">
+          <div class="notif-text">Novas questões foram adicionadas ao <strong>Nível Médio</strong>. Continue sua jornada!</div>
+          <div class="notif-time">há 3 dias</div>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-icon-wrap red">
+          <svg width="20" height="20" color="var(--red)"><use href="#ic-bell"/></svg>
+        </div>
+        <div class="notif-body">
+          <div class="notif-text">Bem-vindo ao <strong>EduQuest</strong>! Comece sua trilha de aprendizado agora.</div>
+          <div class="notif-time">há 5 dias</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HISTORY ===================== -->
+<div id="screen-history" class="screen">
+  <nav class="navbar">
+    <div class="nav-logo-mark" style="cursor:pointer" onclick="showScreen('home')">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#7c6af5"/><path d="M10 26L18 10l8 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="nav-logo-text">EduQuest</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="showScreen('home')"><svg width="16" height="16"><use href="#ic-home"/></svg> Home</button>
+      <button class="nav-link" onclick="showScreen('store')"><svg width="16" height="16"><use href="#ic-store"/></svg> Loja</button>
+      <button class="nav-link" onclick="showScreen('settings')"><svg width="16" height="16"><use href="#ic-settings"/></svg> Configurações</button>
+      <button class="nav-link" onclick="showScreen('missions')"><svg width="16" height="16"><use href="#ic-target"/></svg> Missões</button>
+    </div>
+    <div class="nav-right">
+      <span class="nav-stat" style="color:#b8860b"><svg width="14" height="14" color="#f5a623"><use href="#ic-trophy"/></svg> 3</span>
+      <span class="nav-stat" style="color:var(--purple-dark)"><svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 4</span>
+      <div class="nav-avatar" onclick="toggleDropdown()">JS</div>
+      <button class="nav-menu-btn" onclick="toggleDropdown()"><svg width="22" height="22"><use href="#ic-more"/></svg></button>
+    </div>
+  </nav>
+
+  <div class="history-content">
+    <div class="breadcrumb" style="color:rgba(255,255,255,0.7)">Home &gt; Histórico</div>
+    <div class="history-title">Histórico</div>
+    <div class="history-sub">Suas atividades anteriores</div>
+
+    <div class="history-summary">
+      <div class="history-sum-card">
+        <div class="history-sum-val">1</div>
+        <div class="history-sum-lbl">Atividades</div>
+      </div>
+      <div class="history-sum-card">
+        <div class="history-sum-val">80%</div>
+        <div class="history-sum-lbl">Aproveitamento</div>
+      </div>
+      <div class="history-sum-card">
+        <div class="history-sum-val">4</div>
+        <div class="history-sum-lbl">Diamantes</div>
+      </div>
+    </div>
+
+    <div class="history-list">
+      <div class="history-item">
+        <div class="history-level-dot easy"></div>
+        <div class="history-body">
+          <div class="history-quiz-name">Análise e Desenvolvimento de Sistemas — Nível Fácil</div>
+          <div class="history-date">hoje, 14:23</div>
+        </div>
+        <div class="history-score-wrap">
+          <div class="history-score great">4/5</div>
+          <div class="history-pct">80%</div>
+        </div>
+      </div>
+      <div class="history-item">
+        <div class="history-level-dot easy"></div>
+        <div class="history-body">
+          <div class="history-quiz-name">Análise e Desenvolvimento de Sistemas — Nível Fácil</div>
+          <div class="history-date">ontem, 19:05</div>
+        </div>
+        <div class="history-score-wrap">
+          <div class="history-score good">3/5</div>
+          <div class="history-pct">60%</div>
+        </div>
+      </div>
+      <div class="history-item" style="opacity:0.5">
+        <div style="flex:1;text-align:center;font-size:14px;color:#aaa;padding:12px 0;">
+          Complete mais atividades para ver seu histórico completo
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PROFILE ===================== -->
+<div id="screen-profile" class="screen">
+  <nav class="navbar">
+    <div class="nav-logo-mark" style="cursor:pointer" onclick="showScreen('home')">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#7c6af5"/><path d="M10 26L18 10l8 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 20h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="nav-logo-text">EduQuest</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="showScreen('home')"><svg width="16" height="16"><use href="#ic-home"/></svg> Home</button>
+      <button class="nav-link" onclick="showScreen('store')"><svg width="16" height="16"><use href="#ic-store"/></svg> Loja</button>
+      <button class="nav-link" onclick="showScreen('settings')"><svg width="16" height="16"><use href="#ic-settings"/></svg> Configurações</button>
+      <button class="nav-link" onclick="showScreen('missions')"><svg width="16" height="16"><use href="#ic-target"/></svg> Missões</button>
+    </div>
+    <div class="nav-right">
+      <span class="nav-stat" style="color:#b8860b"><svg width="14" height="14" color="#f5a623"><use href="#ic-trophy"/></svg> 3</span>
+      <span class="nav-stat" style="color:var(--purple-dark)"><svg width="14" height="14" color="var(--purple-dark)"><use href="#ic-diamond"/></svg> 4</span>
+      <div class="nav-avatar" onclick="toggleDropdown()">JS</div>
+      <button class="nav-menu-btn" onclick="toggleDropdown()"><svg width="22" height="22"><use href="#ic-more"/></svg></button>
+    </div>
+  </nav>
+
+  <div class="profile-content">
+    <div class="breadcrumb" style="color:rgba(255,255,255,0.7);margin-bottom:12px">Home &gt; Perfil</div>
+
+    <div class="profile-hero">
+      <div class="profile-avatar">JS</div>
+      <div class="profile-info">
+        <div class="profile-name">João Silva</div>
+        <div class="profile-email">joao.silva@email.com</div>
+        <div class="profile-level-badge">
+          <svg width="13" height="13" color="var(--purple-dark)"><use href="#ic-star"/></svg>
+          Nível 3 — Aprendiz
+        </div>
+      </div>
+      <button style="background:var(--purple-xlight);border:none;border-radius:10px;padding:10px 16px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--purple-dark);cursor:pointer;display:flex;align-items:center;gap:6px;">
+        <svg width="14" height="14"><use href="#ic-settings"/></svg> Editar
+      </button>
+    </div>
+
+    <div class="profile-stats-row">
+      <div class="profile-stat-card">
+        <div class="profile-stat-val">1</div>
+        <div class="profile-stat-lbl">Atividades</div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="profile-stat-val" style="color:var(--purple-dark)">4</div>
+        <div class="profile-stat-lbl">Diamantes</div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="profile-stat-val" style="color:#f5a623">3</div>
+        <div class="profile-stat-lbl">Troféus</div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="profile-stat-val" style="color:var(--red)">3</div>
+        <div class="profile-stat-lbl">Sequência</div>
+      </div>
+    </div>
+
+    <div class="profile-section-title">
+      <svg width="16" height="16" color="white"><use href="#ic-award"/></svg>
+      Conquistas
+    </div>
+    <div class="badges-grid">
+      <div class="badge-item">
+        <div class="badge-icon gold">
+          <svg width="20" height="20" color="#f5a623"><use href="#ic-star"/></svg>
+        </div>
+        <div>
+          <div class="badge-text-name">Primeira Estrela</div>
+          <div class="badge-text-sub">Complete uma atividade</div>
+        </div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon purple">
+          <svg width="20" height="20" color="var(--purple-dark)"><use href="#ic-fire"/></svg>
+        </div>
+        <div>
+          <div class="badge-text-name">Em Chamas</div>
+          <div class="badge-text-sub">3 dias seguidos</div>
+        </div>
+      </div>
+      <div class="badge-item" style="opacity:0.4">
+        <div class="badge-icon silver">
+          <svg width="20" height="20" color="#999"><use href="#ic-trophy"/></svg>
+        </div>
+        <div>
+          <div class="badge-text-name">Campeão</div>
+          <div class="badge-text-sub">Bloqueado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</html>

@@ -1,6 +1,6 @@
 # 📚 Plataforma de Avaliações Educacionais
 
-Projeto desenvolvido para o Projeto Integrado (PIM) do curso de Análise e Desenvolvimento de Sistemas.
+Projeto desenvolvido para o Projeto Integrado (PIM) do curso de Análise e Desenvolvimento de Sistemas do 3º semestre.
 
 ## 📖 Sobre o Projeto
 
